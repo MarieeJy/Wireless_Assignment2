@@ -8,11 +8,12 @@ import time
 
 HOST = socket.gethostbyname('ipc_server_dns_name')  # The server's hostname or IP address
 PORT = 9898        # The port used by the server
+COUNT =3
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
 
-    while True:
+    while COUNT > 0:
         # geneate the value
         temperature = random.randint(10, 50)
         humidity = random.randint(0, 100)
@@ -34,6 +35,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         print(f"Sent: temperature={temperature}℃, humidity={humidity}%, pH={pH}, CO2={CO2}ppm, light={light}%")
         print("Received:", data.decode())
 
+        COUNT -= 1
         time.sleep(3)
 
 
