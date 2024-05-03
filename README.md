@@ -17,3 +17,8 @@ Example2: deploy the client Python script inside another container and demonstra
 3. running both containers:  
    `docker run -rm --network=my_socket_ipc_network --name ipc_server_dns_name my_ipc_server`  
    `docker run -rm --network=my_socket_ipc_network my_ipc_client`
+
+IPC Design:  
+In IPC Design project, client generate 50 random integer numbers, server will calculate the mean, medium and standard of the 50 numbers.  
+The way to run this project is same as Example2.  
+You can see the 50 randomly generated numbers and the mean, medium and standard of the 50 numbers on the client terminal.
