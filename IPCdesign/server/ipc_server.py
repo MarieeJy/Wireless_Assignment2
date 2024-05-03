@@ -4,8 +4,8 @@
 import socket
 import statistics
 
-HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
-PORT = 9898        # Port to listen on (non-privileged ports are > 1023)
+HOST = socket.gethostbyname('ipc_server_dns_name')  # The server's hostname or IP address
+PORT = 9898        # The port used by the server
 
 def process_data(data):
     numbers = list(map(float, data.decode().split()))
