@@ -7,4 +7,4 @@ WORKDIR /server/
 # Expose port 9898 in the container
 EXPOSE 9898
 # execute the command
-CMD [ "python", "/server/ipc_server.py" ]
+CMD [ "python3", "/server/ipc_server.py" ]
