@@ -14,6 +14,6 @@ Example2: deploy the client Python script inside another container and demonstra
    docker build -t my_ipc_client .
 2. Define bridged network in Docker for containers to be able to communicate via sockets, run:
    docker network create my_socket_ipc_network
-3. running both containers:
+3. running both containers:  
    docker run -rm --network=my_socket_ipc_network --name ipc_server_dns_name my_ipc_server
    docker run -rm --network=my_socket_ipc_network my_ipc_client
