@@ -14,5 +14,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.sendall(numbers.encode())
     data = s.recv(1024)
 
-print('Data', numbers)
+print('Data:', numbers)
 print(data.decode())

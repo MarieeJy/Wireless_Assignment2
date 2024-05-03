@@ -26,3 +26,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 break
             result = process_data(data)
             conn.sendall(result.encode())
+            print('Data:', data)
+            print(result)
