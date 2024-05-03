@@ -4,6 +4,7 @@
 import socket
 import random
 import struct
+import time
 
 HOST = socket.gethostbyname('ipc_server_dns_name')  # The server's hostname or IP address
 PORT = 9898        # The port used by the server
@@ -20,10 +21,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         light = random.randint(0, 100)
 
         # package the sensor values
-        sensor_values = struct.pack('!5i', temperature, humidity, pH, CO2, light)
+        values = [str(temperature), str(humidity), str(pH), str(CO2), str(light)]
+        sensor_values = ' '.join(values)
 
         # send values
-        s.sendall(sensor_values)
+        s.sendall(sensor_values.encode())
 
         # get response
         data = s.recv(1024)
@@ -31,5 +33,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # print the result
         print(f"Sent: temperature={temperature}℃, humidity={humidity}%, pH={pH}, CO2={CO2}ppm, light={light}%")
         print("Received:", data.decode())
+
+        time.sleep(3)
+
+
 
 

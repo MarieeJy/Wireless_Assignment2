@@ -23,13 +23,8 @@ def check_environment(temperature, humidity, pH, co2, light_intensity):
     # Check light intensity
     light_status = "Normal" if 300 <= light_intensity <= 500 else "Out of range"
     
-    return {
-        "Temperature":temperature (temp_status),
-        "Humidity": humidity (hum_status),
-        "pH": pH (pH_status),
-        "CO2 Concentration": co2 (co2_status),
-        "Light Intensity": light_intensity (light_status)
-    }
+    return f"Temperature: {temp_status}, Humidity: {hum_status}, pH: {pH_status}, CO2 Concentration: {co2_status}, Light Intensity: {light_status}"
+    
 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -42,6 +37,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             data = conn.recv(1024)
             if not data:
                 break
-            status = check_environment(*data)
+            status = check_environment(data[0], data[1], data[2], data[3], data[4])
             conn.sendall(status.encode())
             print(status)
