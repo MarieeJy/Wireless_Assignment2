@@ -22,3 +22,8 @@ IPC Design:
 In IPC Design project, client generate 50 random integer numbers, server will calculate the mean, medium and standard of the 50 numbers.  
 The way to run this project is same as Example2.  
 You can see the 50 randomly generated numbers and the mean, medium and standard of the 50 numbers on the client terminal.
+
+Soil Monitoring Design  
+This is an automated soil monitoring system. In the service end, we provide the service of determining if the soil temperature, humidity, etc. met the standard continuously. The result will be shown on the user interface. In the client end, we generate random values of temperature, humidity, pH value, Carbon dioxide concentration and light intensity and send these values to the server end and get the result back from the server end.  
+The way to run this project is same as Example2.  
+We generate three times of the sensor values as example for testing, so we can see three output result in the client interface.
