@@ -7,12 +7,30 @@ import statistics
 HOST = socket.gethostbyname('ipc_server_dns_name')  # The server's hostname or IP address
 PORT = 9898        # The port used by the server
 
-def process_data(data):
-    numbers = list(map(float, data.decode().split()))
-    mean = statistics.mean(numbers)
-    median = statistics.median(numbers)
-    stdev = statistics.stdev(numbers)
-    return f"Mean: {mean:.2f}, \nMedian: {median:.2f}, \nStandard Deviation: {stdev:.2f}"
+def check_environment(temperature, humidity, pH, co2, light_intensity):
+    # Check temperature
+    temp_status = "Normal" if 20 <= temperature <= 25 else "Out of range"
+    
+    # Check humidity
+    hum_status = "Normal" if 30 <= humidity <= 60 else "Out of range"
+    
+    # Check pH
+    pH_status = "Normal" if 5.5 <= pH <= 7.5 else "Out of range"
+    
+    # Check CO2 concentration
+    co2_status = "Normal" if co2 < 1000 else "High"
+    
+    # Check light intensity
+    light_status = "Normal" if 300 <= light_intensity <= 500 else "Out of range"
+    
+    return {
+        "Temperature":temperature (temp_status),
+        "Humidity": humidity (hum_status),
+        "pH": pH (pH_status),
+        "CO2 Concentration": co2 (co2_status),
+        "Light Intensity": light_intensity (light_status)
+    }
+
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
@@ -24,7 +42,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             data = conn.recv(1024)
             if not data:
                 break
-            result = process_data(data)
-            conn.sendall(result.encode())
-            print('Data:', data)
-            print(result)
+            status = check_environment(*data)
+            conn.sendall(status.encode())
+            print(status)
