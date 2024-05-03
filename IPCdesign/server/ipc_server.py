@@ -12,7 +12,7 @@ def process_data(data):
     mean = statistics.mean(numbers)
     median = statistics.median(numbers)
     stdev = statistics.stdev(numbers)
-    return f"Mean: {mean}, Median: {median}, Standard Deviation: {stdev}"
+    return f"Mean: {mean:.2f}, \nMedian: {median:.2f}, \nStandard Deviation: {stdev:.2f}"
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
